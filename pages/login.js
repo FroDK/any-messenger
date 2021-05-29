@@ -16,7 +16,7 @@ const Login = () => {
             </Head>
 
             <LoginContainer>
-                <LoginButton onClick={signIn} variant="contained">Sign in with Google</LoginButton>
+                <LoginButton onClick={signIn} variant="contained" size="Large">Sign in with Google</LoginButton>
             </LoginContainer>
         </Container>
     );
@@ -32,7 +32,6 @@ const Container = styled.div`
 `;
 
 const LoginContainer = styled.div`
-  
   height: 500px;
   width: 350px;
   display: flex;
@@ -40,8 +39,8 @@ const LoginContainer = styled.div`
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
-  background-color: white;
-  background-image: url("images/unnamed.png");
+  background-color: gray;
+  background-image: url("/images/unnamed.png");
   background-position: center;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   border-radius: 8px;
@@ -53,4 +52,8 @@ const Logo = styled.img`
   margin-bottom: 50px;
 `;
 
-const LoginButton = styled(Button)``;
+const LoginButton = styled(Button)`
+  &&& {
+    background-color: white;
+  }
+`;
