@@ -1,0 +1,11 @@
+{
+    "Main": {
+      "dbConfig": {
+        "host": "localhost",
+        "name": "postgres",
+        "password": "1",
+        "dialect": "postgres",
+        "username": "postgres"
+      }
+    }
+  }

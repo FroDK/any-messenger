@@ -1,29 +1,35 @@
 import styled from "styled-components";
-import {Avatar} from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
 import getRecipientEmail from "../utils/getRecipientEmail";
-import {useAuthState} from "react-firebase-hooks/auth";
-import {auth, db} from "../firebase";
-import {useCollection} from "react-firebase-hooks/firestore";
-import {useRouter} from "next/router";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "../firebase";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { useRouter } from "next/router";
 
-const Chat = ({id, users}) => {
-    const router = useRouter()
-    const [user] = useAuthState(auth)
-    const [recipientSnapshot] = useCollection(db.collection('users').where('email', '==', getRecipientEmail(users, user)))
+const Chat = ({ id, users }) => {
+  const router = useRouter();
+  const [user] = useAuthState(auth);
+  const [recipientSnapshot] = useCollection(
+    db.collection("users").where("email", "==", getRecipientEmail(users, user))
+  );
 
-    const enterChat = () => {
-        router.push(`/chat/${id}`)
-    }
+  const enterChat = () => {
+    router.push(`/chat/${id}`);
+  };
 
-    const recipient = recipientSnapshot?.docs?.[0]?.data()
-    const recipientEmail = getRecipientEmail(users, user)
+  const recipient = recipientSnapshot?.docs?.[0]?.data();
+  const recipientEmail = getRecipientEmail(users, user);
 
-    return (
-        <Container onClick={enterChat}>
-            {recipient ? (<UserAvatar src={recipient?.photoURL}/>) : (<UserAvatar>{recipientEmail[0]}</UserAvatar>)}
-            <p>{recipientEmail}</p>
-        </Container>
-    );
+  return (
+    <Container onClick={enterChat}>
+      {recipient ? (
+        <UserAvatar src={recipient?.photoURL} />
+      ) : (
+        <UserAvatar>{recipientEmail[0]}</UserAvatar>
+      )}
+      <p>{recipientEmail}</p>
+    </Container>
+  );
 };
 
 export default Chat;
@@ -36,7 +42,7 @@ const Container = styled.div`
   word-break: break-word;
 
   :hover {
-    background-color: #F6F6F6;
+    background-color: #f6f6f6;
   }
 `;
 
